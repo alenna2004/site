@@ -1,0 +1,51 @@
+m1 = (
+    [1,2,9],
+    [3,4,7],
+)
+m2 = (
+    [1,2,3],
+    [3,4,7],
+)
+class Matrix:
+    def __init__(self, data):
+        self.__data = data
+        pass
+    def add(self, other):
+        newdate = [[0]*len(self.__data[0])]*len(self.__data)
+        for i in range(len(self.__data)):
+            for j in range(len(self.__data[i])):
+                newdate[i][j] = self.__data[i][j] + other[i][j]
+        return Matrix(newdate)
+    def subtract(self, other):
+        
+        newdate = [[0]*len(self.__data[0])]*len(self.__data)
+        for i in range(len(self.__data)):
+            
+            for j in range(len(self.__data[i])):
+                newdate[i][j] = self.__data[i][j] - other.__data[i][j]
+        return Matrix(newdate)
+        pass
+    def to_string(self) -> str:
+        a= "Matrix: ("
+        for i in self.__data:
+            a = a + "\n"
+            for j in i:
+                a = a + str(j) + " "
+        return a +"\n"+ ")"
+    def get_data(self) -> list:
+        return self.__data
+        pass
+                           
+
+m = Matrix(m1)
+print(m)
+m3 = m.add(m2)
+print(m3)
+m4 = m.subtract(m3)
+print(m4)
+m.to_string()
+print(m.to_string())
+o = m.get_data()
+print(o)
+o[0][1] = 0
+print(m.to_string())
