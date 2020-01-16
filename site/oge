@@ -1,0 +1,199 @@
+import random
+def generate_oge_task6():
+    x1 = random.randint(-10, 10)
+    y1 = random.randint(-10, 10)
+    x2 = random.randint(-10, 10)
+    y2 = random.randint(-10, 10)
+    x3 = random.randint(-10, 10)
+    y3 = random.randint(-10, 10)
+    x4 = random.randint(-10, 10)
+    y4 = random.randint(-10, 10)
+    times = random.randint(1, 10)
+    x_res = x1 + x2*times + x3*times + x4*times
+    y_res = y1 + y2*times + y3*times + y4*times
+    alg = ('Чертёжнику был дан для исполнения следующий алгоритм: \n\tСместиться на ('+ str(x1)+','+str(y1) +')'
+    +' \n\tПовтори ' +str(times) + ' раз \n\tСместиться на ('+ str(x2)+','+str(y2)+')'
+    +' \n\tСместиться на (' + str(x3)+','+str(y3) +')'+' \n\tСместиться на ('+ str(x4)+','+str(y4) +')'+' \nКонец')
+    return alg, x_res, y_res
+
+
+
+def gen_task16(string):
+    if len(string) % 2 == 0:
+        if ord(string[0])< ord('а'):
+            string ='c' + string
+        else:
+             string ='с' + string
+    else:
+        half_len =len(string)//2 
+        string = string[0:half_len] + string[half_len]+ string[half_len:]
+    new_s = ''
+    for i in range(len(string)):
+        let = string[i]
+        if let == 'я':
+            let = chr(ord('а'))
+        elif let == 'z':
+            let = chr(ord('a'))
+        elif let == 'е':
+            let = chr(ord('ё'))
+        elif let == 'ё':
+            let = chr(ord('ж'))
+        else:
+            let = chr(ord(let)+1)
+        new_s = new_s + let
+    return new_s
+#a = gen_task16_kir('кот')
+def generate_oge_task16(string):
+    times = 2
+    while times != 0:
+        string = gen_task16(string)
+        times = times - 1
+    return string 
+
+
+def generate_oge_task13(num):
+    num2 = bin(num)
+    return num2.count('1')
+
+
+
+
+import random
+def generate_oge_task5(mode='no test') -> (str, str):
+    assert(mode == 'test' or mode == 'no test')
+    # В дальнейшем тестирующий режим вы будете реализовывать самостоятельно.
+    # В данном случае это сделано за вас, чтобы вы примерно поняли идею.
+    if mode == 'test':
+        robot_name = 'Альфа'
+        start_number = 6
+        add_number = 1
+        multiply_number = 10
+        algorithm = '11211'
+    else:
+        robot_name = random.choice(['Альфа', 'Бета', 'Омега']) # можете добавить ещё букв
+        start_number = 6
+        add_number = random.randint(1, 10)
+        multiply_number = random.randint(2, 20)
+        algorithm = list('11111')
+        algorithm[random.randint(0, len(algorithm) - 1)] = '2'
+        algorithm = ''.join(algorithm)
+        print(algorithm)
+    # Здесь начинается код, который вам нужно написать
+    end_number = start_number
+    for num in algorithm:
+        if num =='1':
+            end_number = end_number + add_number
+        else:
+            end_number = end_number*multiply_number
+    task_text= '''У исполнителя Альфа две команды, которым присвоены номера:
+\t1. прибавь {0};
+\t2. умножь на b
+\t(b — неизвестное натуральное число; b ≥ 2).
+Выполняя первую из них, Альфа увеличивает число на экране на {0}, а выполняя вторую, умножает это число на b.
+Программа для исполнителя Альфа — это последовательность номеров команд.
+Известно, что программа {1} переводит число {2} в число {3}.
+
+Определите значение b.
+'''.format(add_number,algorithm,start_number,end_number)
+    # Здесь заканчивается код, который вам нужно написать
+    return task_text, str(multiply_number)
+
+
+
+
+def generate_oge_task10(mode='no test') -> (str, str):
+    assert(mode == 'test' or mode == 'no test')
+    if mode == 'test':
+        num1 = '38'
+        num2 = '75'
+        num3 = '110100'
+        nums = [int(num1, 16), int(num2, 8),int(num3, 2)]
+        answer = max(nums)
+    else:
+        num1 = str(hex(random.randint(1,100)))[2:]
+        num2 = str(oct(random.randint(1,100)))[2:]
+        num3 = str(bin(random.randint(1,100)))[2:]
+        nums = [int(num1,16),int(num2,8),int(num3,2)]
+        answer = max(nums)
+    task_text = '''Среди приведённых ниже трёх чисел, записанных в различных системах счисления, найдите максимальное и запишите его в ответе в десятичной системе счисления.
+В ответе запишите только число, основание системы счисления указывать не нужно.
+\t{0}, {1}, {2}.
+'''.format(num1+ chr(8321) + chr(8326), num2 + chr(8328), num3 + chr(8322))
+    # Здесь заканчивается код, который вам нужно написать
+    return task_text, str(answer)
+
+
+from IPython.display import display_html
+import random
+def generate_oge_task6() -> str:
+    num = random.randint(1,20)
+    html_table = '''<table border="" width="55%"><tbody><tr><th width="50%"><b>Бейсик</b></th><th width="50%"><b>Python</b></th></tr><tr><td><div class="source_code lang_basic">
+<pre class="sh_basic sh_sourceCode"><span class="sh_basic_strange_words">DIM</span> s<span class="sh_symbol">,</span> t <span class="sh_basic_strange_words">AS</span> 
+<span class="sh_type">INTEGER</span>
+ <span class="sh_basic_strange_words">INPUT</span> s
+ <span class="sh_basic_strange_words">INPUT</span> t
+ <span class="sh_keyword">IF</span> s <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span> OR t <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span> 
+ <span class="sh_keyword">THEN</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_basic_strange_words">PRINT</span> ‘ДА’
+ <span class="sh_basic_strange_words">ELSE</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_basic_strange_words">PRINT</span> ‘НЕТ’
+ <span class="sh_keyword">ENDIF</span></pre></div></td>
+ <td><div class="source_code lang_python"><pre class="sh_python sh_sourceCode">
+ <span class="sh_keyword">s = int(input())</span>
+ <span class="sh_keyword">t = int(input())</span>
+ <span class="sh_keyword">if</span> s <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span> or t <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span>:
+ &nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">print</span>("ДА")
+ <span class="sh_keyword">else</span>:
+ &nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">print</span>("НЕТ")</pre></div></td></tr>
+ <tr><th>
+ <b>Паскаль</b></th><th><b>Алгоритмический язык</b></th></tr><tr><td><div class="source_code lang_pascal"><pre class="sh_pascal sh_sourceCode"><span class="sh_keyword">var</span> s<span class="sh_symbol">,</span> t<span class="sh_symbol">:
+ </span> <span class="sh_type">integer</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">begin</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">readln</span><span class="sh_symbol">(</span>s<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">readln</span><span class="sh_symbol">(</span>t<span class="sh_symbol">);</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span><span class="sh_symbol">)</span> <span class="sh_keyword">or</span> <span class="sh_symbol">(</span>t <span class="sh_symbol">&gt;</span> '<span class="sh_number">10</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">then</span> <span class="sh_keyword">writeln</span><span class="sh_symbol">(</span><span class="sh_string_pasc">'ДА'</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">else</span> <span class="sh_keyword">writeln</span><span class="sh_symbol">(</span><span class="sh_string_pasc">'НЕТ'</span><span class="sh_symbol">)</span>
+<span class="sh_keyword">end</span><span class="sh_symbol">.</span></pre></div></td><td><div class="source_code lang_alg"><pre class="sh_alg sh_sourceCode">
+<span class="sh_alg_keyword">алг</span>
+<span class="sh_alg_keyword">нач</span>
+<span class="sh_alg_keyword">цел</span> s<span class="sh_symbol">,</span> t
+<span class="sh_alg_keyword">ввод</span> s
+<span class="sh_alg_keyword">ввод</span> t
+<span class="sh_alg_keyword">если</span> s <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span> или t <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_alg_keyword">то</span> <span class="sh_alg_keyword">вывод</span> "ДА"
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_alg_keyword">иначе</span> <span class="sh_alg_keyword">вывод</span> "НЕТ"
+<span class="sh_alg_keyword">все</span>
+<span class="sh_alg_keyword">кон</span></pre></div></td></tr><tr><th colspan="2"><b>С++</b></th></tr><tr><td colspan="2"><div class="source_code lang_c">
+<pre class="sh_c sh_sourceCode"><span class="sh_preproc">#include</span> <span class="sh_string">&lt;iostream&gt;</span>
+using <span class="sh_usertype">namespace</span><span class="sh_normal"> </span>std<span class="sh_symbol">;</span>
+<span class="sh_type">int</span> <span class="sh_function">main</span><span class="sh_symbol">()</span> <span class="sh_cbracket">{</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_type">int</span> s<span class="sh_symbol">,</span> t<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;cin <span class="sh_symbol">&gt;&gt;</span> s<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;cin <span class="sh_symbol">&gt;&gt;</span> t<span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">if</span> <span class="sh_symbol">(</span>s <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span> <span class="sh_symbol">||</span> t <span class="sh_symbol">&gt;</span> <span class="sh_number">10</span><span class="sh_symbol">)</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">"ДА"</span><span class="sh_symbol">;</span>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="sh_keyword">else</span>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout <span class="sh_symbol">&lt;&lt;</span> <span class="sh_string">"НЕТ"</span><span class="sh_symbol">;</span>
+<span class="sh_keyword">return</span> <span class="sh_number">0</span><span class="sh_symbol">;</span>
+<span class="sh_cbracket">}</span></pre></div></td></tr></tbody></table>'''
+    html_table = html_table.replace('10',str(num))
+    counter = 0 
+    numbers = []
+    for i in range(9):
+        x = random.randint(-10,10)
+        y = random.randint(-10,10)
+        numbers.append((x,y))
+        if x > num or y > num:
+            counter = counter + 1
+    table = display_html(html_table, raw=True)
+    task_str = 'Было проведено 9 запусков программы, при которых в качестве значений переменных s и t вводились следующие пары чисел:\n\n'
+    for i in range(len(numbers)):
+        task_str = task_str + str(numbers[i]) +'; '
+    yes_no = random.choice(['ДА','НЕТ'])
+    full_task = task_str + '\nСколько было запусков, при которых программа напечатала «' + yes_no + '»?'
+    if yes_no == 'ДА':
+        answer = counter
+    else:
+        answer = 9 - counter 
+    return full_task,answer,table
